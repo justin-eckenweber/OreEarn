@@ -1,0 +1,6 @@
+name: OreEarn
+version: 1.1.4
+main: OreEarn\Main
+api: 3.0.0
+author: Pydow Gaming
+description: OreEarn Plugin für Pydow Gaming
