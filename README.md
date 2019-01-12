@@ -1,4 +1,4 @@
 # OreEarn
-OreEarn Plugin for Altay
+OreEarn Plugin für Altay
 
-Soon with config.
+Bald mit config.
