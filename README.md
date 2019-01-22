@@ -1,6 +1,6 @@
 # OreEarn
 
-##### OreEarn Plugin für Altay Server von Pydow Gaming.
+##### OreEarn Plugin für PocketMine-MP Server von Pydow Gaming.
 
 
 Bald mit config.
