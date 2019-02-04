@@ -1,5 +1,6 @@
 # If true players gets an extra bonus with the enchantment "fortune" on the pickaxe.
-# Calc: earn * luckLevel (1 + fortune level)
+# Calc: earn * luckLevel
+# lucklevel: (1 + fortune level)
 luckBonus: true
 # If false players can earn money by breaking ores with silktouch
 ignoreSilktouch: true
