@@ -10,6 +10,7 @@ use pocketmine\item\Item;
 use pocketmine\plugin\PluginBase;
 use pocketmine\block\Block;
 use pocketmine\event\Listener;
+use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
 
@@ -19,6 +20,7 @@ class Main extends PluginBase implements Listener
 
     public function onEnable()
     {
+        $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getLogger()->info(TextFormat::GREEN."OreEarn aktiviert.");
     }
@@ -36,20 +38,26 @@ class Main extends PluginBase implements Listener
             return true;
         }
         if($item->hasEnchantment(Enchantment::SILK_TOUCH)) {
-            return true;
+            if($this->getConfig()->get("ignoreSilktouch") === true) {
+                return true;
+            }
         }
         if($item->hasEnchantment(Enchantment::FORTUNE)) {
             $lucklevel = $item->getEnchantmentLevel(Enchantment::FORTUNE) + 1;
         }
 
-        $stoneEarn = 0.05 * $lucklevel;
-        $coalEarn = 2.5 * $lucklevel;
-        $redstoneEarn = 5 * $lucklevel;
-        $lapisEarn = 10 * $lucklevel;
-        $diamondEarn = 50 * $lucklevel;
-        $emeraldEarn = 250 * $lucklevel;
-        $ironEarn = 3.5 * $lucklevel;
-        $goldEarn = 25 * $lucklevel;
+        if($this->getConfig()->get("luckBonus") === false) {
+            $lucklevel = 1;
+        }
+
+        $stoneEarn = $this->getConfig()->getNested("earnings.stoneEarn") * $lucklevel;
+        $coalEarn = $this->getConfig()->getNested("earnings.coalEarn") * $lucklevel;
+        $redstoneEarn = $this->getConfig()->getNested("earnings.redstoneEarn") * $lucklevel;
+        $lapisEarn = $this->getConfig()->getNested("earnings.lapisEarn") * $lucklevel;
+        $diamondEarn = $this->getConfig()->getNested("earnings.diamondEarn") * $lucklevel;
+        $emeraldEarn = $this->getConfig()->getNested("earnings.emeraldEarn") * $lucklevel;
+        $ironEarn = $this->getConfig()->getNested("earnings.ironEarn") * $lucklevel;
+        $goldEarn = $this->getConfig()->getNested("earnings.goldEarn") * $lucklevel;
 
         $luckdrop = $lucklevel;
 
