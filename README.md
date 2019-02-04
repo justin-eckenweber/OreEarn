@@ -6,5 +6,5 @@
 
 With a simple config.
 
-### You need:
+### Plugins required:
 * EconomyAPI 
