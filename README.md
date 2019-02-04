@@ -1,10 +1,10 @@
 # OreEarn
 
-#### OreEarn Plugin für PocketMine-MP Server von Pydow Gaming.
-##### Einfaches verdienen von Geld durch abbauen von Erzen.
-##### Dieses Plugin enthält sogar einen fix für Glücksspitzhacken.
+#### OreEarn Plugin for PocketMine-MP Servers by Pydow.
+##### Earn money easily by mining ores.
+##### This Plugin includes a (not perfect) fix for fortune pickaxes.
 
-Einfach verständliche Config.
+With a simple config.
 
-### Achtung benötigt:
+### You need:
 * EconomyAPI 
