@@ -8,3 +8,5 @@ With a simple config.
 
 ### Plugins required:
 * EconomyAPI 
+
+[![](https://poggit.pmmp.io/shield.state/OreEarn)](https://poggit.pmmp.io/p/OreEarn)
