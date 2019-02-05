@@ -1,18 +1,22 @@
+---
 # If true players gets an extra bonus with the enchantment "fortune" on the pickaxe.
 # Calc: earn * luckLevel
 # lucklevel: (1 + fortune level)
 luckBonus: true
 # If false players can earn money by breaking ores with silktouch
 ignoreSilktouch: true
+# If false players won't get an popup anymore by breaking an ore
+enablePopup: true
 
 # Earnings per Ore
 earnings:
   stoneEarn: 0.05
   coalEarn: 2.5
   ironEarn: 3.5
-  restoneEarn: 5
+  redstoneEarn: 5
   lapisEarn: 10
   goldEarn: 25
   diamondEarn: 50
   emeraldEarn: 250
+...
 
