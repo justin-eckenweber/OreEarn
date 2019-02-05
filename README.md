@@ -1,4 +1,5 @@
-[![](https://poggit.pmmp.io/shield.state/OreEarn)](https://poggit.pmmp.io/p/OreEarn) [![](https://poggit.pmmp.io/shield.api/OreEarn)](https://poggit.pmmp.io/p/OreEarn)
+[![](https://poggit.pmmp.io/shield.state/OreEarn)](https://poggit.pmmp.io/p/OreEarn) 
+[![](https://poggit.pmmp.io/shield.api/OreEarn)](https://poggit.pmmp.io/p/OreEarn)
 # OreEarn
 
 #### OreEarn plugin for PocketMine-MP servers by Pydow.
