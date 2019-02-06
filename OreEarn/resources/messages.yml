@@ -1,7 +1,6 @@
 ---
 # messages:
 # {money} = Amount of money
-stoneEarn: "You've recieved {money}$ for mining stone."
 coalEarn: "You've recieved {money}$ for mining coal."
 ironEarn: "You've recieved {money}$ for mining iron."
 redstoneEarn: "You've recieved {money}$ for mining redstone."
