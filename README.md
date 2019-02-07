@@ -14,10 +14,10 @@ more settings:
 | luckBonus      | Disable or enable the money bonus when you break an ore with a fortune enchantment.         | true/false | true    |
 | ignoreSiltouch | With this setting, you can disable or enable the bonus for silktouch tools                  | true/false | true    |
 | enablePopup    | Show a popup when a player is mining an ore. (you can edit every message in messages.yml)   | true/false | true    |
-##### Fortune Fix
+### Fortune Fix
 This Plugin includes a (not perfect) fix for fortune pickaxes
 
-### Plugins required:
+## Plugins required:
 * EconomyAPI 
 
 
