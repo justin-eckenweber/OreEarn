@@ -24,7 +24,6 @@ class Main extends PluginBase implements Listener
         $this->saveResource("messages.yml");
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getLogger()->info(TextFormat::GREEN."OreEarn aktiviert.");
     }
 
     public function onBreak(BlockBreakEvent $event) {
