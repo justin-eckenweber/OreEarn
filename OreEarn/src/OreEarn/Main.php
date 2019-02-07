@@ -1,6 +1,6 @@
 <?php
 
-namespace OreEarn;
+namespace SchdowNVIDIA\OreEarn;
 
 use pocketmine\entity\Effect;
 use pocketmine\event\block\BlockBreakEvent;
