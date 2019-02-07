@@ -2,7 +2,7 @@
 [![](https://poggit.pmmp.io/shield.api/OreEarn)](https://poggit.pmmp.io/p/OreEarn)
 # OreEarn
 OreEarn plugin, earn money easily by mining ores and stone.
-##### Config
+## Config
 What you can edit:
 * every earning per ore
 * every popup message
