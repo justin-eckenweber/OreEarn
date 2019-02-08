@@ -1,6 +1,5 @@
 [![](https://poggit.pmmp.io/shield.state/OreEarn)](https://poggit.pmmp.io/p/OreEarn)
 [![](https://poggit.pmmp.io/shield.api/OreEarn)](https://poggit.pmmp.io/p/OreEarn)
-![](https://img.shields.io/badge/Version%201.4-Checked-green.svg)
 # OreEarn
 OreEarn plugin, earn money easily by mining ores and stone.
 
