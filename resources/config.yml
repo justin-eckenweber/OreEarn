@@ -1,4 +1,10 @@
 ---
+# Do not edit the config version.
+cfg-version: 1
+
+# If you don't want to enable this plugin in a world add it to the ignoredWorlds list
+# Like that: ["exampleWorld1", "exampleWorld2", "exampleWorld3"]
+ignoredWorlds: []
 # If true players gets an extra bonus with the enchantment "fortune" on the pickaxe.
 # Calc: earn * luckLevel
 # lucklevel: (1 + fortune level)

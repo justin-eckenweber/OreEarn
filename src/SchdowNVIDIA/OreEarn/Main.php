@@ -6,6 +6,7 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
+use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use pocketmine\block\Block;
 use pocketmine\event\Listener;
@@ -20,30 +21,51 @@ class Main extends PluginBase implements Listener
     public function onEnable()
     {
         @mkdir($this->getDataFolder());
-        $this->saveDefaultConfig();
         $this->saveResource("messages.yml");
-        $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
+
+        $cfgVersion = 1;
+        if(($this->getConfig()->get("cfg-version")) < $cfgVersion || !($this->getConfig()->exists("cfg-version"))) {
+            $this->getLogger()->critical("Your config.yml is outdated.");
+            $this->getLogger()->info("Loading new config version...");
+            rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "old_config.yml");
+            $this->saveResource("config.yml");
+            $this->getLogger()->notice("Done: The old config has been saved as \"old_config.yml\" and the new config has been successfully loaded.");
+        };
+
+        $this->saveDefaultConfig();
     }
+
+
+
 
     public function onBreak(BlockBreakEvent $event) {
         $messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML);
+        $ignoredWorlds = $this->getConfig()->get("ignoredWorlds");
+        $world = $event->getPlayer()->getLevel()->getName();
         if($event->isCancelled()) {
             return true;
         }
+        if(in_array($world, $ignoredWorlds)) {
+            return true;
+        }
+
         $player = $event->getPlayer();
         $name = $player->getName();
         $item = $event->getItem();
         $id = $event->getBlock()->getId();
         $lucklevel = 1;
+
         if($player->getGamemode() > 0) {
             return true;
         }
+
         if($item->hasEnchantment(Enchantment::SILK_TOUCH)) {
             if($this->getConfig()->get("ignoreSilktouch") === true) {
                 return true;
             }
         }
+
         if($item->hasEnchantment(Enchantment::FORTUNE)) {
             $lucklevel = $item->getEnchantmentLevel(Enchantment::FORTUNE) + 1;
         }

@@ -1,6 +1,7 @@
 name: OreEarn
-version: 1.4.0
+version: 1.5.0
 main: SchdowNVIDIA\OreEarn\Main
 api: 3.0.0
-author: Pydow, SchdowNVIDIA
-description: OreEarn Plugin of Pydow
+authors:
+  -  SchdowNVIDIA
+description: OreEarn Plugin
