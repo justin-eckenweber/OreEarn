@@ -1,6 +1,6 @@
 ---
 # Do not edit the config version.
-cfg-version: 1
+cfg-version: 2
 
 # If you don't want to enable this plugin in a world add it to the ignoredWorlds list
 # Like that: ["exampleWorld1", "exampleWorld2", "exampleWorld3"]
@@ -8,7 +8,9 @@ ignoredWorlds: []
 # If true players gets an extra bonus with the enchantment "fortune" on the pickaxe.
 # Calc: earn * luckLevel
 # lucklevel: (1 + fortune level)
-luckBonus: true
+fortuneBonus: true
+# If false the built-in fortune fix will be disabled.
+fortuneFix: true
 # If false players can earn money by breaking ores with silktouch
 ignoreSilktouch: true
 # If false players won't get an popup anymore by breaking an ore

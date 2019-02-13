@@ -24,7 +24,7 @@ class Main extends PluginBase implements Listener
         $this->saveResource("messages.yml");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
-        $cfgVersion = 1;
+        $cfgVersion = 2;
         if(($this->getConfig()->get("cfg-version")) < $cfgVersion || !($this->getConfig()->exists("cfg-version"))) {
             $this->getLogger()->critical("Your config.yml is outdated.");
             $this->getLogger()->info("Loading new config version...");
@@ -70,7 +70,13 @@ class Main extends PluginBase implements Listener
             $lucklevel = $item->getEnchantmentLevel(Enchantment::FORTUNE) + 1;
         }
 
-        if($this->getConfig()->get("luckBonus") === false) {
+        if($this->getConfig()->get("fortuneFix") === false) {
+            $luckdrop = 1;
+        } else {
+            $luckdrop = $lucklevel;
+        }
+
+        if($this->getConfig()->get("fortuneBonus") === false) {
             $lucklevel = 1;
         }
 
@@ -86,7 +92,7 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::COAL_ORE) {
             $earn = $this->getConfig()->getNested("earnings.coalEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(263, 0 , rand(1, $lucklevel))));
+            $event->setDrops(array(Item::get(263, 0 , rand(1, $luckdrop))));
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -95,7 +101,7 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::REDSTONE_ORE || $id == Block::GLOWING_REDSTONE_ORE) {
             $earn = $this->getConfig()->getNested("earnings.redstoneEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(331, 0 , rand(1, $lucklevel))));
+            $event->setDrops(array(Item::get(331, 0 , rand(1, $luckdrop))));
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -104,13 +110,13 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::LAPIS_ORE) {
             $earn = $this->getConfig()->getNested("earnings.lapisEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(351, 4 , rand(1, $lucklevel))));
+            $event->setDrops(array(Item::get(351, 4 , rand(1, $luckdrop))));
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             $player->sendPopup($this->stringConvert($messages->get("lapisEarn"), $earn));
         }
         if($id == Block::DIAMOND_ORE) {
             $earn = $this->getConfig()->getNested("earnings.diamondEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(264, 0 , rand(1, $lucklevel))));
+            $event->setDrops(array(Item::get(264, 0 , rand(1, $luckdrop))));
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -119,7 +125,7 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::EMERALD_ORE) {
             $earn = $this->getConfig()->getNested("earnings.emeraldEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(388, 0 , rand(1, 2))));
+            $event->setDrops(array(Item::get(388, 0 , rand(1, $luckdrop))));
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -128,7 +134,7 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::IRON_ORE) {
             $earn = $this->getConfig()->getNested("earnings.ironEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(265), Item::get(452, 0, rand(0, $lucklevel))));
+            $event->setDrops(array(Item::get(265), Item::get(452, 0, rand(0, $luckdrop))));
             $event->setXpDropAmount(2.75);
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
@@ -138,7 +144,7 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::GOLD_ORE) {
             $earn = $this->getConfig()->getNested("earnings.goldEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(266), Item::get(371, 0, rand(0, $lucklevel))));
+            $event->setDrops(array(Item::get(266), Item::get(371, 0, rand(0, $luckdrop))));
             $event->setXpDropAmount(5);
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
