@@ -16,7 +16,10 @@ more settings:
 
 | name           | description                                                                                 | settings   | default |
 |----------------|---------------------------------------------------------------------------------------------|------------|---------|
-| luckBonus      | Disable or enable the money bonus when you break an ore with a fortune enchantment.         | true/false | true    |
+| ignoredWorlds | With this setting you can disable oreearn in worlds | ["world"] | [] |
+| ignoredDropWorlds | With this setting you can ignore ore drops in worlds (good for mines or smth. like that) | ["world"] | [] |
+| fortuneFix | Disable or enable the built-in fortuneFix | true/false | true |
+| fortuneBonus      | Disable or enable the money bonus when you break an ore with an fortune enchantment.         | true/false | true   |
 | ignoreSilktouch | With this setting, you can disable or enable the bonus for silktouch tools                  | true/false | true    |
 | enablePopup    | Show a popup when a player is mining an ore. (you can edit every message in messages.yml)   | true/false | true    |
 
