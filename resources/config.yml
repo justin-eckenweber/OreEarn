@@ -1,10 +1,13 @@
 ---
 # Do not edit the config version.
-cfg-version: 2
+cfg-version: 3
 
 # If you don't want to enable this plugin in a world add it to the ignoredWorlds list
 # Like that: ["exampleWorld1", "exampleWorld2", "exampleWorld3"]
 ignoredWorlds: []
+# Here you can disable ore drops in worlds
+# Example: ["mine1", "mine2"]
+ignoredDropWorlds: []
 # If true players gets an extra bonus with the enchantment "fortune" on the pickaxe.
 # Calc: earn * luckLevel
 # lucklevel: (1 + fortune level)
