@@ -24,7 +24,7 @@ class Main extends PluginBase implements Listener
         $this->saveResource("messages.yml");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
-        $cfgVersion = 2;
+        $cfgVersion = 3;
         if(($this->getConfig()->get("cfg-version")) < $cfgVersion || !($this->getConfig()->exists("cfg-version"))) {
             $this->getLogger()->critical("Your config.yml is outdated.");
             $this->getLogger()->info("Loading new config version...");
@@ -42,12 +42,17 @@ class Main extends PluginBase implements Listener
     public function onBreak(BlockBreakEvent $event) {
         $messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML);
         $ignoredWorlds = $this->getConfig()->get("ignoredWorlds");
+        $ignoredDropWorlds = $this->getConfig()->get("ignoredDropWorlds");
         $world = $event->getPlayer()->getLevel()->getName();
+        $allowDrop = true;
         if($event->isCancelled()) {
             return true;
         }
         if(in_array($world, $ignoredWorlds)) {
             return true;
+        }
+        if(in_array($world, $ignoredDropWorlds)) {
+            $allowDrop = false;
         }
 
         $player = $event->getPlayer();
@@ -80,19 +85,27 @@ class Main extends PluginBase implements Listener
             $lucklevel = 1;
         }
 
+
+
         if($id == Block::STONE) {
             $earn = $this->getConfig()->getNested("earnings.stoneEarn") * $lucklevel;
             $extraStone = rand(1, 100);
-            if($extraStone > 98) {
-                $event->setDrops(array(Item::get(4), Item::get(371, 0, rand(0, 1))));
-            } else if ($extraStone < 2) {
-                $event->setDrops(array(Item::get(4), Item::get(452, 0, rand(0, 1))));
+            if($allowDrop === true) {
+                if ($extraStone > 98) {
+                    $event->setDrops(array(Item::get(4), Item::get(371, 0, rand(0, 1))));
+                } else if ($extraStone < 2) {
+                    $event->setDrops(array(Item::get(4), Item::get(452, 0, rand(0, 1))));
+                }
             }
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
         }
         if($id == Block::COAL_ORE) {
             $earn = $this->getConfig()->getNested("earnings.coalEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(263, 0 , rand(1, $luckdrop))));
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(263, 0, rand(1, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -101,7 +114,11 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::REDSTONE_ORE || $id == Block::GLOWING_REDSTONE_ORE) {
             $earn = $this->getConfig()->getNested("earnings.redstoneEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(331, 0 , rand(1, $luckdrop))));
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(331, 0, rand(1, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -110,13 +127,21 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::LAPIS_ORE) {
             $earn = $this->getConfig()->getNested("earnings.lapisEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(351, 4 , rand(1, $luckdrop))));
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(351, 4, rand(1, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             $player->sendPopup($this->stringConvert($messages->get("lapisEarn"), $earn));
         }
         if($id == Block::DIAMOND_ORE) {
             $earn = $this->getConfig()->getNested("earnings.diamondEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(264, 0 , rand(1, $luckdrop))));
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(264, 0, rand(1, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -125,7 +150,11 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::EMERALD_ORE) {
             $earn = $this->getConfig()->getNested("earnings.emeraldEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(388, 0 , rand(1, $luckdrop))));
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(388, 0, rand(1, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
                 return;
@@ -134,7 +163,11 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::IRON_ORE) {
             $earn = $this->getConfig()->getNested("earnings.ironEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(265), Item::get(452, 0, rand(0, $luckdrop))));
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(265), Item::get(452, 0, rand(0, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
             $event->setXpDropAmount(2.75);
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
@@ -144,7 +177,11 @@ class Main extends PluginBase implements Listener
         }
         if($id == Block::GOLD_ORE) {
             $earn = $this->getConfig()->getNested("earnings.goldEarn") * $lucklevel;
-            $event->setDrops(array(Item::get(266), Item::get(371, 0, rand(0, $luckdrop))));
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(266), Item::get(371, 0, rand(0, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
             $event->setXpDropAmount(5);
             $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
             if($this->getConfig()->get("enablePopup") === false) {
