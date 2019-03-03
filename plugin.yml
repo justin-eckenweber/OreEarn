@@ -1,7 +1,7 @@
 name: OreEarn
-version: 1.7.0
+version: 1.8.0
 main: SchdowNVIDIA\OreEarn\Main
 api: 3.0.0
 authors:
   -  SchdowNVIDIA
-description: OreEarn Plugin
+description: "OreEarn: earn money easily by mining ores."

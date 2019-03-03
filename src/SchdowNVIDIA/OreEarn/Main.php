@@ -22,9 +22,14 @@ class Main extends PluginBase implements Listener
     {
         @mkdir($this->getDataFolder());
         $this->saveResource("messages.yml");
+        $this->cfgChecker();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->saveDefaultConfig();
+    }
 
-        $cfgVersion = 3;
+    public function cfgChecker() {
+        $cfgVersion = 4;
+        $msgVersion = 1;
         if(($this->getConfig()->get("cfg-version")) < $cfgVersion || !($this->getConfig()->exists("cfg-version"))) {
             $this->getLogger()->critical("Your config.yml is outdated.");
             $this->getLogger()->info("Loading new config version...");
@@ -32,8 +37,14 @@ class Main extends PluginBase implements Listener
             $this->saveResource("config.yml");
             $this->getLogger()->notice("Done: The old config has been saved as \"old_config.yml\" and the new config has been successfully loaded.");
         };
-
-        $this->saveDefaultConfig();
+        $messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML);
+        if(($messages->get("msg-version")) < $msgVersion || !($messages->exists("msg-version"))) {
+            $this->getLogger()->critical("Your messages.yml is outdated.");
+            $this->getLogger()->info("Loading new messages version...");
+            rename($this->getDataFolder() . "messages.yml", $this->getDataFolder() . "old_messages.yml");
+            $this->saveResource("messages.yml");
+            $this->getLogger()->notice("Done: The old messages config has been saved as \"old_messages.yml\" and the new messages config has been successfully loaded.");
+        };
     }
 
 
@@ -115,7 +126,7 @@ class Main extends PluginBase implements Listener
         if($id == Block::REDSTONE_ORE || $id == Block::GLOWING_REDSTONE_ORE) {
             $earn = $this->getConfig()->getNested("earnings.redstoneEarn") * $lucklevel;
             if($allowDrop === true) {
-                $event->setDrops(array(Item::get(331, 0, rand(1, $luckdrop))));
+                $event->setDrops(array(Item::get(331, 0, rand((2 * $luckdrop), (4 * $luckdrop)))));
             } else {
                 $event->setDrops([]);
             }
@@ -128,7 +139,7 @@ class Main extends PluginBase implements Listener
         if($id == Block::LAPIS_ORE) {
             $earn = $this->getConfig()->getNested("earnings.lapisEarn") * $lucklevel;
             if($allowDrop === true) {
-                $event->setDrops(array(Item::get(351, 4, rand(1, $luckdrop))));
+                $event->setDrops(array(Item::get(351, 4, rand((2 * $luckdrop), (4 * $luckdrop)))));
             } else {
                 $event->setDrops([]);
             }
@@ -189,6 +200,19 @@ class Main extends PluginBase implements Listener
             }
             $player->sendPopup($this->stringConvert($messages->get("goldEarn"), $earn));
     }
+        if($id == Block::QUARTZ_ORE) {
+            $earn = $this->getConfig()->getNested("earnings.quartzEarn") * $lucklevel;
+            if($allowDrop === true) {
+                $event->setDrops(array(Item::get(406, 0, rand(1, $luckdrop))));
+            } else {
+                $event->setDrops([]);
+            }
+            $this->getServer()->getPluginManager()->getPlugin("EconomyAPI")->addMoney($name, $earn);
+            if($this->getConfig()->get("enablePopup") === false) {
+                return;
+            }
+            $player->sendPopup($this->stringConvert($messages->get("quartzEarn"), $earn));
+        }
     }
     public function stringConvert(string $string, int $earn): string{
         $string = str_replace("{money}", $earn, $string);

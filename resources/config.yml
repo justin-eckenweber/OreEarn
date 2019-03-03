@@ -1,6 +1,6 @@
 ---
 # Do not edit the config version.
-cfg-version: 3
+cfg-version: 4
 
 # If you don't want to enable this plugin in a world add it to the ignoredWorlds list
 # Like that: ["exampleWorld1", "exampleWorld2", "exampleWorld3"]
@@ -22,6 +22,7 @@ enablePopup: true
 # Earnings per Ore
 earnings:
   stoneEarn: 0.05
+  quartzEarn: 2.5
   coalEarn: 2.5
   ironEarn: 3.5
   redstoneEarn: 5
