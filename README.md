@@ -5,8 +5,8 @@
 OreEarn plugin, earn money easily by mining ores and stone.
 
 ## Wiki
-If you need some help with setting up the plugin visit the wiki: https://github.com/SchdowNVIDIA/OreEarn/wiki
-If you still need help join our [Discord](https://discord.gg/5kGgUbt)
+If you need some help with setting up the plugin visit the wiki: https://github.com/SchdowNVIDIA/OreEarn/wiki but
+if you still need help join our [discord!](https://discord.gg/5kGgUbt)
 
 ## Config
 What you can edit:
