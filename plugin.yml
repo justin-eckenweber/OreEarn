@@ -1,7 +1,9 @@
 name: OreEarn
-version: 1.8.0
+version: 1.8.1
 main: SchdowNVIDIA\OreEarn\Main
 api: 3.0.0
 authors:
   -  SchdowNVIDIA
 description: "OreEarn: earn money easily by mining ores."
+depend:
+  - EconomyAPI

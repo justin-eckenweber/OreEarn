@@ -25,6 +25,10 @@ class Main extends PluginBase implements Listener
         $this->cfgChecker();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
+        if($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") === null) {
+            $this->getLogger()->error("OreEarn requires the plugin \"EconomyAPI\" to work!");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
     }
 
     public function cfgChecker() {
