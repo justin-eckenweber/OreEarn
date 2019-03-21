@@ -4,6 +4,6 @@ main: SchdowNVIDIA\OreEarn\Main
 api: 3.0.0
 authors:
   -  SchdowNVIDIA
-description: "OreEarn: earn money easily by mining ores."
+description: "OreEarn plugin, earn money easily by mining ores."
 depend:
   - EconomyAPI
