@@ -5,6 +5,11 @@
 # OreEarn
 OreEarn plugin, earn money easily by mining ores and stone.
 
+# Download(s)
+OreEarn for PocketMine-MP Servers: https://poggit.pmmp.io/p/OreEarn/1.8.1
+OreEarn for NukkitX Servers: https://nukkitx.com/resources/oreearn.239/
+OreEArn for Spigot Servers (Ported by Mundschutziii): https://www.spigotmc.org/resources/oreearn.66859/
+
 ## Wiki
 If you need some help with setting up the plugin visit the wiki: https://github.com/SchdowNVIDIA/OreEarn/wiki but
 if you still need help join our [discord!](https://discord.gg/5kGgUbt)
